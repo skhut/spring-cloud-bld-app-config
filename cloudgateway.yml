@@ -1,0 +1,23 @@
+server:
+  port: 8088
+
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: employeeAPI
+          uri: lb://employee-api
+          predicates:
+            - Path=/employee/**
+          filters:
+            - RewritePath=/empapi/(?<path>.*), /$\{path}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8280/eureka/
+    
+management:
+    security:
+      enabled: false
