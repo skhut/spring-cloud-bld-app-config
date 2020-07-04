@@ -9,7 +9,7 @@ spring:
           predicates:
           - Path=/booksapi/**
           filters:
-          - RewritePath=/books/(?<path>.*), /$\{path}
+          - RewritePath=/booksapi(?<segment>/?.*), /books$\{segment}
 
 server:
      port: 8088
