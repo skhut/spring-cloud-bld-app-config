@@ -1,7 +1,9 @@
+spring:
+  application:
+    name: cloudgateway
+
 server:
   port: 8088
-
-hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
 
 spring:
   cloud:
@@ -15,9 +17,5 @@ spring:
             - RewritePath=/empapi/(?<path>.*), /$\{path}
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8280/eureka/
-    
-management:
-    security:
-      enabled: false
+    region: default
+    registryFetchIntervalSeconds: 5
