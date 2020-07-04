@@ -14,9 +14,9 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: employeeAPI
-          uri: lb://employee-api
+        - id: booksAPI
+          uri: lb://BOOK-SERVICE
           predicates:
-            - Path=/empapi/**
+            - Path=/booksapi/**
           filters:
-            - RewritePath=/employee/(?<path>.*), /$\{path}
+            - RewritePath=/books/(?<path>.*), /$\{path}
