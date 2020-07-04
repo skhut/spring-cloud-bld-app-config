@@ -1,21 +1,6 @@
 spring:
   application:
-    name: cloudgateway
+           name: cloudgateway
 
 server:
-  port: 8088
-
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: employeeAPI
-          uri: lb://employee-api
-          predicates:
-            - Path=/employee/**
-          filters:
-            - RewritePath=/empapi/(?<path>.*), /$\{path}
-eureka:
-  client:
-    region: default
-    registryFetchIntervalSeconds: 5
+     port: 8088
