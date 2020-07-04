@@ -1,6 +1,15 @@
 spring:
   application:
            name: cloudgateway
+  cloud:
+    gateway:
+      routes:
+        - id: booksAPI
+          uri: lb://BOOK-SERVICE
+          predicates:
+          - Path=/booksapi/**
+          filters:
+          - RewritePath=/books/(?<path>.*), /$\{path}
 
 server:
      port: 8088
@@ -9,14 +18,3 @@ eureka:
   client:
     region: default
     registryFetchIntervalSeconds: 5
-    
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: booksAPI
-          uri: lb://BOOK-SERVICE
-          predicates:
-            - Path=/booksapi/**
-          filters:
-            - RewritePath=/books/(?<path>.*), /$\{path}
