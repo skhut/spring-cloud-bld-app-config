@@ -9,3 +9,14 @@ eureka:
   client:
     region: default
     registryFetchIntervalSeconds: 5
+    
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: employeeAPI
+          uri: lb://employee-api
+          predicates:
+            - Path=/empapi/**
+          filters:
+            - RewritePath=/employee/(?<path>.*), /$\{path}
